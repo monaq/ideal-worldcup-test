@@ -1,6 +1,4 @@
-import { createPastel } from './core/Pastel'
+import { Stage } from './core/Stage'
 import '../css/common.css'
-import picture from '../images/example.jpeg'
-import { $ } from './lib/utils'
 
-const pastel = createPastel()
+const stage = new Stage()
