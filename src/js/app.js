@@ -1,6 +1,4 @@
-import { createPastel } from './core/Pastel'
+import createTournament from 'core/createTournament'
 import '../css/common.css'
-import picture from '../images/example.jpeg'
-import { $ } from './lib/utils'
 
-const pastel = createPastel()
+const Tournament = createTournament()
