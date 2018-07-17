@@ -9,7 +9,7 @@ const History = {
    * @return {boolean}
    */
   hasBefore() {
-    return Boolean(this.stack[this.index - 1])
+    return !!(this.stack[this.index - 1])
   },
   // /**
   //  * 다음 stage 가 있는지 확인

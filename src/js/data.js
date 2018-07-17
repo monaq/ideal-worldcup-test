@@ -1,3 +1,5 @@
-import chickens from './dist/chickens'
+import chickens from '../dist/chickens'
 
-export default data = chickens
+const data = chickens
+
+export default data

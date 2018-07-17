@@ -1,13 +1,9 @@
-export class Candidate {
+class Candidate {
   constructor(item) {
     this.title = item.title
-    this.image = item.image
+    this.image = item.relativePath
     this.won = 0
-
-    this.init()
-  }
-
-  init() {
-    console.log('item')
   }
 }
+
+export default Candidate

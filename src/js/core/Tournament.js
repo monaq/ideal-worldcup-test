@@ -2,11 +2,12 @@ import { Stage } from './Stage'
 import { Handler } from '../handle/Handler'
 import History from './History'
 import data from '../data'
+import Candidate from './Candidate'
 
 const createTournament = () => {
   class Tournament {
     constructor() {
-      this.step = 0
+      this.step = -1
       this.stage = null
       this.stepName = ['32강', '16강', '8강', '4강', '결승']
       this.candidates = []
@@ -18,13 +19,14 @@ const createTournament = () => {
 
     init() {
       this.fetchData(data)
+      this.winners = this.candidates
       this.setStage()
     }
 
     setStage() {
-      this.stage = new Stage(this.step, this.winners)
-      History.addStage(this.stage)
       this.nextStep()
+      this.stage = new Stage(this.stepName[this.step], this.winners)
+      History.addStage(this.stage)
     }
 
     cancelStage() {
@@ -35,7 +37,7 @@ const createTournament = () => {
       }
     }
     /**
-     * 현재 스테이지를 생성한다
+     * 현재 스테이지를 반환한다
      * @param {Object} stage
      */
     getStage() {
@@ -55,8 +57,10 @@ const createTournament = () => {
     }
 
     fetchData(data) {
-      this.candidates = data
-      console.log(this.candidates)
+      data.forEach((item)=> {
+        const candidate = new Candidate(item)
+        this.candidates.push(candidate)
+      })
     }
 
     setWinners(winners = []) {

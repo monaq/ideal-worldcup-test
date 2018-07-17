@@ -1,6 +1,6 @@
 export class Stage {
-  constructor(step = 0, winners = []) {
-    this.step = step
+  constructor(stepName = '', winners = []) {
+    this.stepName = stepName
     this.candidates = winners
     this.matches = []
 
@@ -8,6 +8,7 @@ export class Stage {
   }
 
   init() {
+    console.log(this.stepName)
     const randomize = this.shuffle(this.candidates)
     this.matches = this.setChunk(randomize, 2)
   }
