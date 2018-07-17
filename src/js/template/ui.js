@@ -1,13 +1,13 @@
-import renderer from './lib/renderer'
+import renderer from '../lib/renderer'
 
-const thumbnail = (frameId, imageSrc) => {
+const idealItem = (idealId, imageSrc) => {
   return renderer.create(`
-    <li class="select" data-img-id="${frameId}">
+    <div class="ideal" data-img-id="${idealId}">
           <img src=${imageSrc} />
-    </li>`)
+    </div>`)
 }
 
 const ui = {
-  thumbnail,
+  idealItem,
 }
 export default ui

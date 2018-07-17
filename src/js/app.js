@@ -1,4 +1,4 @@
-import createTournament from 'core/createTournament'
+import createTournament from './core/Tournament'
 import '../css/common.css'
 
 const Tournament = createTournament()
