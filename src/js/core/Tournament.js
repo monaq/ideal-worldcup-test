@@ -8,7 +8,7 @@ const createTournament = () => {
   class Tournament {
     constructor() {
       this.step = -1
-      this.stage = null
+      this.stage = {}
       this.stepName = ['32강', '16강', '8강', '4강', '결승']
       this.candidates = []
       this.winners = []
@@ -25,7 +25,7 @@ const createTournament = () => {
 
     setStage() {
       this.nextStep()
-      this.stage = new Stage(this.stepName[this.step], this.winners)
+      this.stage = new Stage(this.getStepName(), this.winners)
       History.addStage(this.stage)
     }
 
@@ -43,21 +43,25 @@ const createTournament = () => {
     getStage() {
       return this.Stage
     }
-
+    /**
+     * 현재 스테이지 이름을 반환한다
+     * @param {String}
+     */
     getStepName() {
       return this.stepName[this.step]
     }
-
+    /**
+     * 강을 전환한다
+     */
     nextStep() {
       this.step++
     }
-
     prevStep() {
       this.step--
     }
 
     fetchData(data) {
-      data.forEach((item)=> {
+      data.forEach(item => {
         const candidate = new Candidate(item)
         this.candidates.push(candidate)
       })
@@ -69,6 +73,9 @@ const createTournament = () => {
 
     getCandidates() {
       return this.candidates
+    }
+    getWinners() {
+      return this.winners
     }
   }
 

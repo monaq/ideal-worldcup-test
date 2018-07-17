@@ -6,8 +6,14 @@ const idealItem = (idealId, imageSrc) => {
           <img src=${imageSrc} />
     </div>`)
 }
+const prevButton = () => {
+  return renderer.create(`
+    <button> < </button>`)
+}
+
 
 const ui = {
   idealItem,
+  prevButton
 }
 export default ui
