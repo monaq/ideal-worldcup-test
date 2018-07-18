@@ -1,5 +1,6 @@
 import ui from '../template/ui'
 import { $ } from '../lib/utils'
+import HandleSelector from './HandleSelector';
 
 /**
  * Hander
@@ -10,12 +11,11 @@ export class Handler {
   constructor(stage, step) {
     this.stage = stage
     this.step = step
-    
-    this.render()
+    this.render(this.step)
   }
 
-  render() {
-    this.renderItems()
+  render(step) {
+    this.renderItems(step)
     this.setLeagueTitle()
   }
 
@@ -24,14 +24,14 @@ export class Handler {
     titleArea.innerHTML = String(this.stage.stepName) // title을 매번 set 하는게 효율?
   }
 
-  renderItems() {
+  renderItems(step) {
     const container = $('#container')
-    const match = this.stage.matches[this.step]
+    const match = this.stage.matches[step]
 
     match.map(item => { 
-      console.log(item)
       ui.idealItem(item.id, item.title, item.image).render(container)
     })
+    HandleSelector(this)
   }
 
 }

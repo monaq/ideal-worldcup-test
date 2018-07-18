@@ -1,11 +1,9 @@
-import { Stage } from './Stage'
-import History from './History'
 import data from '../data'
 import Candidate from './Candidate'
-import { stringify } from 'querystring'
 import HandleSelector from '../handle/HandleSelector';
+import StageManager from './StageManager';
 
-const createTournament = () => {
+const createTournament = (candidateFactory, commandFactory) => {
   class Tournament {
     constructor() {
       this.step = -1
@@ -14,69 +12,25 @@ const createTournament = () => {
       this.candidates = []
       this.winners = []
 
+      this.commands = new StageManager(this)
+      
       this.init()
     }
 
     init() {
       this.fetchData(data)
       this.winners = this.candidates
-      this.setStage()
+      this.commands.setStage()
+    
     }
 
     fetchData(data) {
       data.forEach(item => {
-        const candidate = new Candidate(item)
+        const candidate = new Candidate(this, item)
         this.candidates.push(candidate)
       })
     }
 
-    setStage() {
-      this.nextStep()
-      this.stage = new Stage(this.getStepName(), this.winners)
-      History.addStage(this.stage)
-      HandleSelector(this)
-    }
-    cancelStage() {
-      if (History.hasBefore()) {
-        History.before()
-        this.stage = History.get()
-        this.prevStep()
-      }
-    }
-    /**
-     * 현재 스테이지를 반환한다
-     * @param {Object} stage
-     */
-    getStage() {
-      return this.Stage
-    }
-    /**
-     * 현재 스테이지 이름을 반환한다
-     * @param {String}
-     */
-    getStepName() {
-      return this.stepName[this.step]
-    }
-    /**
-     * 강을 전환한다
-     */
-    nextStep() {
-      this.step++
-    }
-    prevStep() {
-      this.step--
-    }
-
-    setWinners(winners = []) {
-      this.winners = winners
-    }
-
-    getCandidates() {
-      return this.candidates
-    }
-    getWinners() {
-      return this.winners
-    }
   }
 
   const tournament = new Tournament()

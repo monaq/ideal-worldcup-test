@@ -6,16 +6,22 @@ export class Stage {
     this.stepName = stepName
     this.candidates = winners
     this.step = 0
+    this.winner = []
     this.matches = []
-
+    
     this.init()
   }
 
   init() {
-    console.log(this.stepName)
     const randomize = this.shuffle(this.candidates)
     this.matches = this.setChunk(randomize, 2)
     this.Handler = new Handler(this, this.step)
+  }
+
+  getCandidate(id) {
+    const candidates = this.candidates
+    const candidate = candidates.filter(item => item.id === id)
+    return candidate
   }
 
   /**
@@ -47,7 +53,4 @@ export class Stage {
     return newArray
   }
 
-  getCurrentCandidate(idx) {
-    return this.candidates[idx]
-  }
 }
