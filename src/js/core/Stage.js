@@ -1,7 +1,11 @@
+import { Handler } from '../handle/Handler'
+
+
 export class Stage {
   constructor(stepName = '', winners = []) {
     this.stepName = stepName
     this.candidates = winners
+    this.step = 0
     this.matches = []
 
     this.init()
@@ -11,6 +15,7 @@ export class Stage {
     console.log(this.stepName)
     const randomize = this.shuffle(this.candidates)
     this.matches = this.setChunk(randomize, 2)
+    this.Handler = new Handler(this, this.step)
   }
 
   /**

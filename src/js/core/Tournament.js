@@ -1,8 +1,9 @@
 import { Stage } from './Stage'
-import { Handler } from '../handle/Handler'
 import History from './History'
 import data from '../data'
 import Candidate from './Candidate'
+import { stringify } from 'querystring'
+import HandleSelector from '../handle/HandleSelector';
 
 const createTournament = () => {
   class Tournament {
@@ -12,7 +13,6 @@ const createTournament = () => {
       this.stepName = ['32강', '16강', '8강', '4강', '결승']
       this.candidates = []
       this.winners = []
-      this.Handler = new Handler(this)
 
       this.init()
     }
@@ -23,12 +23,19 @@ const createTournament = () => {
       this.setStage()
     }
 
+    fetchData(data) {
+      data.forEach(item => {
+        const candidate = new Candidate(item)
+        this.candidates.push(candidate)
+      })
+    }
+
     setStage() {
       this.nextStep()
       this.stage = new Stage(this.getStepName(), this.winners)
       History.addStage(this.stage)
+      HandleSelector(this)
     }
-
     cancelStage() {
       if (History.hasBefore()) {
         History.before()
@@ -58,13 +65,6 @@ const createTournament = () => {
     }
     prevStep() {
       this.step--
-    }
-
-    fetchData(data) {
-      data.forEach(item => {
-        const candidate = new Candidate(item)
-        this.candidates.push(candidate)
-      })
     }
 
     setWinners(winners = []) {
