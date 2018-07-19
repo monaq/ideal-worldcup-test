@@ -2,7 +2,8 @@ import data from '../data'
 import Candidate from './Candidate'
 import History from './History'
 import StageManager from './StageManager'
-import { Stage } from './Stage';
+import { HandleStage } from '../handle/HandleStage'
+import EventManager from './EventManager'
 
 const createTournament = () => {
   class Tournament {
@@ -13,6 +14,8 @@ const createTournament = () => {
       this.candidates = []
       this.winners = []
 
+      this.eventManager = new EventManager()
+
       this.init()
     }
 
@@ -20,11 +23,19 @@ const createTournament = () => {
       this.fetchData(data)
       this.winners = this.candidates
       this.setStage(this.winners)
+      this.bindEvent()
+    }
+
+    bindEvent() {
+      this.eventManager.on('next', () => {
+        this.winners = StageManager.getWinnerList()
+        this.setStage(this.winners)
+      })
     }
 
     fetchData(data) {
       data.forEach(item => {
-        const candidate = new Candidate(this, item)
+        const candidate = new Candidate(item)
         this.candidates.push(candidate)
       })
     }
@@ -43,10 +54,10 @@ const createTournament = () => {
     setStage(winners) {
       this.nextStep()
       this.winners = winners
-      this.stage = new Stage(
+      this.stage = new HandleStage(
         this.getStageName(),
         this.winners,
-        this.nextStage.bind(this)
+        this.eventManager
       )
       History.addStage(this.stage)
     }

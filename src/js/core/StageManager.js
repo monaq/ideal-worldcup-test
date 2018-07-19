@@ -1,8 +1,10 @@
+import Candidate from './Candidate';
 
 const StageManager = {
   /**
    * 강을 전환한다
    */
+  winnerList: [],
   nextStep(step) {
     return ++step
   },
@@ -10,14 +12,14 @@ const StageManager = {
     return --step
   },
   getCandidate(id, candidates) {
-    console.log(id, candidates)
     const candidate = candidates.filter(item => item.id === id)
-    return candidate
+    return new Candidate(...candidate)
   },
-  setWinner(arr, winner) {
-    console.log(arr)
-    const newArr = arr.push(winner)
-    return newArr
+  setNextWinner(winnerList) {
+    this.winnerList = winnerList
+  },
+  getWinnerList() {
+    return this.winnerList
   }
 }
 
