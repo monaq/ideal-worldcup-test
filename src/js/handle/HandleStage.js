@@ -1,38 +1,41 @@
 import { $$, $ } from '../lib/utils'
 import ui from '../template/ui'
 import StageManager from '../core/StageManager';
+import { Stage } from '../core/Stage';
 
-const HandleStage = stage => {
-  const $container = $('#matchContainer')
-  const $stageName = $('#stageName')
-  const matches = stage.matches
-  $stageName.el.innerHTML = stage.stageName
+export class HandleStage extends Stage {
+  constructor(stageName, winners, eventManager) {
+    super(stageName, winners, eventManager)
 
-  matches[stage.step].forEach(item => {
-    ui.idealItem(item.id, item.title, item.image).render($container.el)
-  });
+    this.$container = $('#matchContainer')
+    this.setStageName()
+    this.renderItems()
+  }
 
-  const $$target = $$('.ideal')
+  setStageName() {
+    const $stageName = $('#stageName')
+    $stageName.el.innerHTML = this.stageName
+  }
 
-  $$target.forEach(el => {
-    el.addEventListener('click', function() {
-      const id = Number($(el).el.dataset.id)
-      const winner = StageManager.getCandidate(id, matches[stage.step])
-      const winners = stage.winners
-
-      console.log('winner', winner)
-
-      /* 매치가 끝날 때까지 다음 매치를 렌더링 한다 */
-      if(stage.step > matches.length) {
-        this.stage.endOfStage()
-      } else {
-        stage.winners = StageManager.setWinner(winners, winner)
-        stage.step = StageManager.nextStep(stage.step)
-
-        console.log(stage.winner, stage.step)
-      }
+  renderItems() {
+    this.$container.el.innerHTML = ''
+    this.matches[this.step].forEach(item => {
+      ui.idealItem(item.id, item.title, item.image).render(this.$container.el)
     })
-  });
-}
+    this.$$target = $$('.ideal')
+    this.bindEvents()
+  }
+ 
+  bindEvents() {
+    const self = this
+    this.$$target.forEach(el => {
+      el.addEventListener('click', function() {
+        const id = Number($(el).el.dataset.id)
+        const winner = StageManager.getCandidate(id, self.candidates)
+        self.setWinner(winner)
+      })
+    });
 
-export default HandleStage
+  }
+  
+}
