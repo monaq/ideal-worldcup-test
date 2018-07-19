@@ -1,27 +1,25 @@
-import { Handler } from '../handle/Handler'
+import HandleStage from '../handle/HandleStage';
+import StageManager from './StageManager';
 
 
 export class Stage {
-  constructor(stepName = '', winners = []) {
-    this.stepName = stepName
+  constructor(stageName = '', winners = [], nextStage) {
+    this.stageName = stageName
     this.candidates = winners
     this.step = 0
-    this.winner = []
+    this.winners = []
     this.matches = []
+
+    this._nextStage = nextStage
     
+
     this.init()
   }
 
   init() {
     const randomize = this.shuffle(this.candidates)
     this.matches = this.setChunk(randomize, 2)
-    this.Handler = new Handler(this, this.step)
-  }
-
-  getCandidate(id) {
-    const candidates = this.candidates
-    const candidate = candidates.filter(item => item.id === id)
-    return candidate
+    HandleStage(this)
   }
 
   /**
@@ -52,5 +50,15 @@ export class Stage {
     }
     return newArray
   }
-
+  setWinner(winner = []) {
+    this.winner = winner
+  }
+  nextMatch() {
+    
+    HandleStage(this)
+  }
+  endOfStage() {
+    console.log(this.stageName, 'ends')
+    this._nextStage(this.winners)
+  }
 }

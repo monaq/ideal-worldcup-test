@@ -32,3 +32,4 @@ label{cursor:pointer}
 .ideal.selected {border:3px solid red;}
 .ideal img {width: 100%}
 .ideal .title {text-align: center; font-size: 20px}
+.hide {display:none;}

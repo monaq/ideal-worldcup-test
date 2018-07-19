@@ -1,4 +1,6 @@
 import { $$, $ } from '../lib/utils'
+import StageManager from '../core/StageManager';
+import data from '../data';
 
 const HandleSelector = (tournament) => {
   const $target = $$('.ideal')
@@ -9,9 +11,7 @@ const HandleSelector = (tournament) => {
       const dataId = Number(target.dataset.id)
       const winner = tournament.stage.getCandidate(dataId)
 
-      tournament.Commands.setWinners(winner)
-      tournament.Commands.nextMatch()
-
+      StageManager.setWinners(dataId, winner)
     })
   })
 }
