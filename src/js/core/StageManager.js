@@ -1,10 +1,14 @@
-import Candidate from './Candidate';
+import Candidate from './Candidate'
+import { $ } from '../lib/utils';
 
 const StageManager = {
   /**
-   * 강을 전환한다
+   * 임시 winner list
    */
   winnerList: [],
+  /**
+   * 강을 전환한다
+   */
   nextStep(step) {
     return ++step
   },
@@ -20,6 +24,13 @@ const StageManager = {
   },
   getWinnerList() {
     return this.winnerList
+  },
+  setFinalTree() {
+    const $container = $('#matchContainer')
+    const $resultContainer = $('#resultContainer')
+    $container.addClass('hide')
+    $resultContainer.removeClass('hide')
+    $resultContainer.addClass('show')
   }
 }
 

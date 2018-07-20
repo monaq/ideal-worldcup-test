@@ -1,5 +1,4 @@
 import StageManager from './StageManager'
-import EventManager from './EventManager';
 
 export class Stage {
   constructor(stageName = '', winners = [], eventManager) {
@@ -17,7 +16,6 @@ export class Stage {
   init() {
     const randomize = this.shuffle(this.candidates)
     this.matches = this.setChunk(randomize, 2)
-    console.log('this.matches', this.matches)
   }
 
   /**
@@ -51,16 +49,20 @@ export class Stage {
   // setWinner(winner) {
   //   /* 스테이지가 끝날 때까지 다음 매치를 렌더링 한다 */
   //   if (this.step == this.matches.length - 1) {
-      
+
   //   } else {
-      
+
   //   }
   // }
 
+  /**
+   * nextMatch
+   * 스테이지가 끝날 때까지 다음 매치를 렌더링 한다
+   * @param winner {Object}
+   */
   nextMatch(winner) {
     this.winnerList.push(winner)
-    console.log(this.winnerList)
-    if(this.step > this.matches.length - 1) {
+    if (this.step > this.matches.length - 1) {
       this.endOfStage()
     } else {
       this.renderItems()
@@ -70,7 +72,7 @@ export class Stage {
   endOfStage() {
     StageManager.setNextWinner(this.winnerList)
     this.eventManager.emit('next')
-    if(this.stageName == '결승') {
+    if (this.stageName == '결승') {
       this.eventManager.emit('final')
     }
   }

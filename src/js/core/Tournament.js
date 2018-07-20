@@ -4,6 +4,7 @@ import History from './History'
 import StageManager from './StageManager'
 import { HandleStage } from '../handle/HandleStage'
 import EventManager from './EventManager'
+import { Results } from './Results';
 
 const createTournament = () => {
   class Tournament {
@@ -34,7 +35,8 @@ const createTournament = () => {
       })
 
       this.eventManager.on('final', () => {
-        alert('ssssssss')
+        this.setFinalTree()
+        const resultPage = new Results()
       })
     }
 
@@ -93,6 +95,10 @@ const createTournament = () => {
     getStageName() {
       const step = this.step
       return this.stageName[step]
+    }
+
+    setFinalTree() {
+      StageManager.setFinalTree()
     }
   }
 

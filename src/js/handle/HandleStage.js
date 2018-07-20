@@ -8,10 +8,9 @@ export class HandleStage extends Stage {
     super(stageName, winners, eventManager)
 
     this.$container = $('#matchContainer')
+  
     this.setStageName()
     this.renderItems()
-    
-
   }
 
   setStageName() {
@@ -43,4 +42,5 @@ export class HandleStage extends Stage {
       })
     })
   }
+
 }
