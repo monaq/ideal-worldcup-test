@@ -37,7 +37,6 @@ export class HandleStage extends Stage {
         const element = $(el).el
         const id = Number(element.dataset.id)
         const winner = StageManager.getCandidate(id, self.candidates)
-        winner.won++
         self.nextMatch(winner)
       })
     })

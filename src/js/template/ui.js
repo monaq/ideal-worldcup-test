@@ -10,10 +10,9 @@ const idealItem = (id, title, imageSrc) => {
 
 const treeItem = (id, title, imageSrc) => {
   return renderer.create(`
-    <li data-id="${id}">${title}</li>
+    <div class="item" data-id="${id}">${title}</div>
   `)
 }
-
 
 const ui = {
   idealItem,
