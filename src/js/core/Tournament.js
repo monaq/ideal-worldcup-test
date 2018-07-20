@@ -29,7 +29,12 @@ const createTournament = () => {
     bindEvent() {
       this.eventManager.on('next', () => {
         this.winners = StageManager.getWinnerList()
+        History.addStage(this.stage)
         this.setStage(this.winners)
+      })
+
+      this.eventManager.on('final', () => {
+        alert('ssssssss')
       })
     }
 
@@ -59,7 +64,7 @@ const createTournament = () => {
         this.winners,
         this.eventManager
       )
-      History.addStage(this.stage)
+    
     }
     nextStage(winners) {
       this.stage.setStage(winners)

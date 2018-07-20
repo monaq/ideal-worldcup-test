@@ -208,5 +208,19 @@
   "originalSrc": "http://www.piku.co.kr/w/uploads/6h8GFF/0b1a7109447e7821bf819d75ed691076.jpg",
   "filename": "0b1a7109447e7821bf819d75ed691076.jpg",
   "relativePath": "dist/images/0b1a7109447e7821bf819d75ed691076.jpg"
+ },
+ {
+  "id": 31,
+  "title": "강호동 678 치킨 웨지감자치킨",
+  "originalSrc": "http://www.fcmedia.co.kr/news/photo/201502/3195_5977_1544.jpg",
+  "filename": "201502/3195_5977_1544.jpg",
+  "relativePath": "dist/images/201502/3195_5977_1544.jpg"
+ },
+ {
+  "id": 32,
+  "title": "멕시카나 오징어짬뽕 치킨",
+  "originalSrc": "http://img.insight.co.kr/static/2018/02/04/700/xj0iubz4ufk13tqgmp5h.jpg",
+  "filename": "xj0iubz4ufk13tqgmp5h.jpg",
+  "relativePath": "dist/images/xj0iubz4ufk13tqgmp5h.jpg"
  }
 ]

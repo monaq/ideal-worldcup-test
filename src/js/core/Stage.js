@@ -17,6 +17,7 @@ export class Stage {
   init() {
     const randomize = this.shuffle(this.candidates)
     this.matches = this.setChunk(randomize, 2)
+    console.log('this.matches', this.matches)
   }
 
   /**
@@ -47,14 +48,14 @@ export class Stage {
     }
     return newArray
   }
-  setWinner(winner) {
-    /* 스테이지가 끝날 때까지 다음 매치를 렌더링 한다 */
-    if (this.step == this.matches.length - 1) {
-      this.endOfStage()
-    } else {
-      this.nextMatch(winner)
-    }
-  }
+  // setWinner(winner) {
+  //   /* 스테이지가 끝날 때까지 다음 매치를 렌더링 한다 */
+  //   if (this.step == this.matches.length - 1) {
+      
+  //   } else {
+      
+  //   }
+  // }
 
   nextMatch(winner) {
     this.step = StageManager.nextStep(this.step)
@@ -65,5 +66,8 @@ export class Stage {
   endOfStage() {
     StageManager.setNextWinner(this.winnerList)
     this.eventManager.emit('next')
+    if(this.stageName == '결승') {
+      this.eventManager.emit('final')
+    }
   }
 }
