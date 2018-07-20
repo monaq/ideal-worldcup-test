@@ -58,9 +58,13 @@ export class Stage {
   // }
 
   nextMatch(winner) {
-    this.step = StageManager.nextStep(this.step)
     this.winnerList.push(winner)
-    this.renderItems()
+    console.log(this.winnerList)
+    if(this.step > this.matches.length - 1) {
+      this.endOfStage()
+    } else {
+      this.renderItems()
+    }
   }
 
   endOfStage() {

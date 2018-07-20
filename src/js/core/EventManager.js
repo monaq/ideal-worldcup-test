@@ -24,7 +24,6 @@ class EventManager {
       args = [].slice.call(arguments, 1)
 
     listeners = this.events[event]
-    console.log(listeners)
     length = listeners.length
 
     for (i = 0; i < length; i++) {

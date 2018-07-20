@@ -10,6 +10,8 @@ export class HandleStage extends Stage {
     this.$container = $('#matchContainer')
     this.setStageName()
     this.renderItems()
+    
+
   }
 
   setStageName() {
@@ -19,26 +21,25 @@ export class HandleStage extends Stage {
 
   renderItems() {
     this.$container.el.innerHTML = ''
-    this.matches[this.step].forEach(item => {
-      ui.idealItem(item.id, item.title, item.image).render(this.$container.el)
-    })
-    this.$$target = $$('.ideal')
-    this.bindEvents()
+    if(this.matches[this.step]) {
+      this.matches[this.step].forEach(item => {
+        ui.idealItem(item.id, item.title, item.image).render(this.$container.el)
+      })
+      this.$$target = $$('.ideal')
+      this.bindEvents()
+    }
   }
 
   bindEvents() {
     const self = this
     this.$$target.forEach(el => {
       el.addEventListener('click', function() {
-        if(self.step == self.matches.length - 1) {
-          self.endOfStage()
-        } else {
-          const element = $(el).el
-          const id = Number(element.dataset.id)
-          const winner = StageManager.getCandidate(id, self.candidates)
-          winner.won++
-          self.nextMatch(winner)
-        }
+        self.step = StageManager.nextStep(self.step)
+        const element = $(el).el
+        const id = Number(element.dataset.id)
+        const winner = StageManager.getCandidate(id, self.candidates)
+        winner.won++
+        self.nextMatch(winner)
       })
     })
   }
