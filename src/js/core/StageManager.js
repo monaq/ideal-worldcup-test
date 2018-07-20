@@ -22,6 +22,10 @@ const StageManager = {
   setNextWinner(winnerList) {
     this.winnerList = winnerList
   },
+  /**
+   * 현재 스테이지의 결과값을 반환
+   * @return {Araay}
+   */
   getWinnerList() {
     return this.winnerList
   },
@@ -29,6 +33,7 @@ const StageManager = {
     const $container = $('#matchContainer')
     const $resultContainer = $('#resultContainer')
     $container.addClass('hide')
+
     $resultContainer.removeClass('hide')
     $resultContainer.addClass('show')
   }

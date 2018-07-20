@@ -7,14 +7,16 @@ const idealItem = (id, title, imageSrc) => {
           <div class="title">${title}</div>
     </div>`)
 }
-const prevButton = () => {
+
+const treeItem = (id, title, imageSrc) => {
   return renderer.create(`
-    <button></button>`)
+    <li data-id="${id}">${title}</li>
+  `)
 }
 
 
 const ui = {
   idealItem,
-  prevButton
+  treeItem
 }
 export default ui

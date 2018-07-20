@@ -18,6 +18,7 @@ const History = {
   // hasNext() {
   //   return Boolean(this.stack[this.index + 1])
   // },
+  
   /**
    * 인덱스를 다음으로 이동한다
    */
