@@ -1,4 +1,5 @@
 import StageManager from './StageManager'
+import { HandleHistory } from '../handle/HandleHistory';
 
 export class Stage {
   constructor(stageName = '', winners = [], eventManager) {
@@ -9,6 +10,7 @@ export class Stage {
     this.matches = []
 
     this.eventManager = eventManager
+    this.History = new HandleHistory(this)
 
     this.init()
   }
@@ -67,6 +69,12 @@ export class Stage {
     } else {
       this.renderItems()
     }
+  }
+
+  prevMatch() {
+    this.winnerList.pop()
+    this.step = StageManager.prevStep(this.step)
+    this.renderItems()
   }
 
   /**

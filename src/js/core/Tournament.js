@@ -4,7 +4,8 @@ import History from './History'
 import StageManager from './StageManager'
 import { HandleStage } from '../handle/HandleStage'
 import EventManager from './EventManager'
-import { Results } from './Results';
+import { Results } from './Results'
+import HandleHistory from '../handle/HandleHistory'
 
 const createTournament = () => {
   class Tournament {
