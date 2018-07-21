@@ -23,6 +23,7 @@ const createTournament = () => {
     init() {
       this.fetchData(data)
       this.winners = this.candidates
+
       this.setStage(this.winners)
       this.bindEvent()
     }
@@ -96,7 +97,6 @@ const createTournament = () => {
       const step = this.step
       return this.stageName[step]
     }
-
     setFinalTree() {
       StageManager.setFinalTree()
     }

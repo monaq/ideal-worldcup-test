@@ -69,6 +69,9 @@ export class Stage {
     }
   }
 
+  /**
+   * 스테이지 끝난 시점의 event emit
+   */
   endOfStage() {
     StageManager.setNextWinner(this.winnerList)
     this.eventManager.emit('next')

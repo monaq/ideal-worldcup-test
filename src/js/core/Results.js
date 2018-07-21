@@ -13,6 +13,13 @@ export class Results {
   init() {
     this.setStageName()
     this.renderItems()
+
+    const $container = $('#matchContainer')
+    const $resultContainer = $('#resultContainer')
+    $container.addClass('hide')
+
+    $resultContainer.removeClass('hide')
+    $resultContainer.addClass('show')
   }
 
   setStageName() {
@@ -35,25 +42,33 @@ export class Results {
   }
 
   renderResultTree(stage) {
-    const winnerList = stage.winnerList
-    const winnerId = []
+    const candidates = stage.candidates
+    
     const $wrapper = document.createElement('div')
     $wrapper.setAttribute('name', stage.stageName)
     $wrapper.setAttribute('class', 'stageResult')
+
     this.$resultTree.append($wrapper)
 
-    winnerList.forEach(winner => {
-      winnerId.push(winner.id)
-      ui.treeItem(winner.id, winner.title, winner.image).render($wrapper)
+    candidates.forEach(candidate => {
+      ui.treeItem(candidate.id, candidate.title, candidate.image).render($wrapper)
     })
-    this.chkIsWinner(winnerId)
+   
+    this.chkIsWinner(this.filterWinner(stage))
   }
-  chkIsWinner(winnerId) {
+  filterWinner(stage) {
+    const winnerList = stage.winnerList
+    return winnerList.map((winner) => winner.id)
+  }
+  /**
+   * 트리에서 승자만 체크
+   * @param {Array} winnerIds 
+   */
+  chkIsWinner(winnerIds) {
     const $$items = $$('.item')
     $$items.forEach(item => {
-      const isExist = winnerId.indexOf(Number($(item).el.dataset.id))
-      console.log(isExist)
-      isExist > -1 ? $(item).addClass('win') : null
+      const itemId = Number($(item).el.dataset.id)
+      winnerIds.includes(itemId) ? $(item).addClass('win') : null
     })
   }
 }

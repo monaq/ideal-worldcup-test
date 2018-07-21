@@ -10,6 +10,7 @@ class EventManager {
    * @param target{object} - target to bind
    */
   on(event, listener) {
+    console.log('on',event)
     if (typeof this.events[event] !== 'object') {
       this.events[event] = []
     }

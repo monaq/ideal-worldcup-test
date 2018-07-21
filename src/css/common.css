@@ -36,3 +36,4 @@ label{cursor:pointer}
 .ideal .title {text-align: center; font-size: 20px}
 .hide {display:none;}
 .stageResult{float:left;padding: 5px;background-color: gray; color: white}
+.item.win{background-color: red}
