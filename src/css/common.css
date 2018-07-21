@@ -23,17 +23,33 @@ button::-moz-focus-inner, input[type="reset"]::-moz-focus-inner, input[type="but
 **/
 body{background-color:#2c3036}
 label{cursor:pointer}
-#header{font-size:30px;padding:24px 0 24px 21px;border-bottom:1px solid #E0E0E0;color:whitesmoke}
-#league{color:gray;}
-#wrap{position:relative;height:790px;padding-top:50px;background-color:#eff1f4}
-#container{width: 100%; height: 100%;}
-#header .logo{width:187px;height:25px}
-#resultTree{display: block}
-#champion{display: block; height:400px;}
-.ideal {width: 30%; float:left;padding:50px 0;margin:0 50px;background-color:#E0E0E0; cursor: pointer;}
+#header{font-size:30px;padding:24px 0 24px 21px;text-align:center;color:whitesmoke}
+#stageName{background-color: #E0E0E0; font-size:20px;color: #2c3036}
+#champion{overflow: hidden; margin-bottom: 30px;}
+#champion .ideal{float: none;margin: 0 auto;border: none;cursor: auto;}
+#prevButton{
+  display: block;
+  width: 120px;
+  height: 30px;
+  margin-bottom: 30px;
+  background: #3498db;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+#prevButton.disabled{cursor:auto; background: gray; color: #555}
+.wrapper{width:1000px;margin:0 auto;overflow:hidden;padding:30px 0;border-top:1px solid #E0E0E0;border-bottom: 1px solid #e0e0e0;}
+.matchWrapper{width: 800px;margin: 0 auto}
+.ideal {width: 290px; height: 350px;float:left;padding:20px 0;margin:0 50px;background-color:#E0E0E0; cursor: pointer;}
+.ideal:hover {border:3px solid red;border-style: outset}
 .ideal.selected {border:3px solid red;}
 .ideal img {width: 100%}
 .ideal .title {text-align: center; font-size: 20px}
 .hide {display:none;}
-.stageResult{float:left;padding: 5px;background-color: gray; color: white}
+.stageResult{float:left;padding: 5px;background-color: gray; color: white; margin-right:8px}
 .item.win{background-color: red}
