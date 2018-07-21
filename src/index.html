@@ -9,16 +9,21 @@
 </head>
 
 <body>
-    <header id="header">이상형월드컵 :
-        <span id="stageName"></span>
+    <header id="header">이상형월드컵
+        <div id="stageName"></div>
     </header>
-    <div id="prevButton">뒤로가기</div>
-    <div id="matchContainer" class="container">
+    <div class="wrapper">
+        <button id="prevButton" class="disabled">뒤로가기</button>
+        <div class="matchWrapper">
+            <div id="matchContainer" class="container"></div>
+        </div>
+        <div id="resultContainer" class="container">
+            <div id="champion"></div>
+            <div id="resultTree">
+            </div>
+        </div>
     </div>
-    <div id="resultContainer" class="container">
-        <div id="champion"></div>
-        <div id="resultTree"></div>
-    </div>
+
 </body>
 
 </html>

@@ -10,7 +10,7 @@ export class Stage {
     this.matches = []
 
     this.eventManager = eventManager
-    this.History = new HandleHistory(this)
+    this.handleHistory = new HandleHistory(this)
 
     this.init()
   }
@@ -72,9 +72,13 @@ export class Stage {
   }
 
   prevMatch() {
-    this.winnerList.pop()
-    this.step = StageManager.prevStep(this.step)
-    this.renderItems()
+    if(this.step !== 0) {
+      this.winnerList.pop()
+      this.step = StageManager.prevStep(this.step)
+      this.renderItems()
+    } else {
+      this.eventManager.emit('prev')
+    }
   }
 
   /**

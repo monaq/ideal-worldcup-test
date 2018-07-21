@@ -5,7 +5,6 @@ import StageManager from './StageManager'
 import { HandleStage } from '../handle/HandleStage'
 import EventManager from './EventManager'
 import { Results } from './Results'
-import HandleHistory from '../handle/HandleHistory'
 
 const createTournament = () => {
   class Tournament {
@@ -24,7 +23,7 @@ const createTournament = () => {
     init() {
       this.fetchData(data)
       this.winners = this.candidates
-
+      this.nextStep()
       this.setStage(this.winners)
       this.bindEvent()
     }
@@ -33,12 +32,23 @@ const createTournament = () => {
       this.eventManager.on('next', () => {
         this.winners = StageManager.getWinnerList()
         History.addStage(this.stage)
+        History.next()
+        this.nextStep()
         this.setStage(this.winners)
       })
 
       this.eventManager.on('final', () => {
         this.setFinalTree()
         const resultPage = new Results()
+      })
+
+      this.eventManager.on('prev', () => {
+        if(History.hasBefore) {
+          History.before()
+          this.prevStep()
+
+          alert('이전 강으로 넘어갈 수 없습니다')
+        }
       })
     }
 
@@ -61,14 +71,12 @@ const createTournament = () => {
      * 다음 스테이지를 생성한다
      */
     setStage(winners) {
-      this.nextStep()
       this.winners = winners
       this.stage = new HandleStage(
         this.getStageName(),
         this.winners,
         this.eventManager
       )
-    
     }
     nextStage(winners) {
       this.stage.setStage(winners)
