@@ -1,54 +1,48 @@
 /**
- * History 생성
+ * @summary History 생성
  */
 const History = {
   index: -1,
   data: [],
   /**
-   * 이전 stage 가 있는지 확인
+   * @description 이전 stage 가 있는지 확인
    * @return {boolean}
    */
   hasBefore() {
-    return !!(this.data[this.index - 1])
+    return !!this.data[this.index - 1]
   },
-  // /**
-  //  * 다음 stage 가 있는지 확인
-  //  * @return {boolean}
-  //  */
-  // hasNext() {
-  //   return Boolean(this.stack[this.index + 1])
-  // },
-  
   /**
-   * 인덱스를 다음으로 이동한다
+   * @description 인덱스를 다음으로 이동한다
    */
   next() {
     this.index++
   },
   /**
-   * 인덱스를 이전으로 이동한다
+   * @description 인덱스를 이전으로 이동한다
    */
   before() {
     this.index--
   },
   /**
-   * 현재 히스토리를 반환한다
-   * @return {Object} stack
+   * @description 현재 히스토리를 반환한다
+   * @return {Object} data
    */
   get() {
-    return this.stack[this.index]
+    return this.data[this.index]
   },
   /**
-   * 히스토리를 추가한다
+   * @description 히스토리를 추가한다
    * @param {Object} stage
    */
   addStage(stage) {
-    this.stack.push(stage)
+    this.data.push(stage)
     this.next()
   },
-
+  /**
+   * @description 히스토리를 초기화
+   */
   reset() {
-    this.stack = []
+    this.data = []
     this.index = -1
   }
 }
