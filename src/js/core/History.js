@@ -3,13 +3,13 @@
  */
 const History = {
   index: -1,
-  stack: [],
+  data: [],
   /**
    * 이전 stage 가 있는지 확인
    * @return {boolean}
    */
   hasBefore() {
-    return !!(this.stack[this.index - 1])
+    return !!(this.data[this.index - 1])
   },
   // /**
   //  * 다음 stage 가 있는지 확인
