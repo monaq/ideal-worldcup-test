@@ -6,7 +6,7 @@ export class Results {
   constructor() {
     this.$resultTree = $('#resultTree')
     this.$champion = $('#champion')
-    this.stack = History.stack
+    this.data = History.data
     this.init()
   }
 
@@ -29,14 +29,14 @@ export class Results {
 
   renderItems() {
     this.renderChampion()
-    this.stack.forEach(stage => {
+    this.data.forEach(stage => {
       this.renderResultTree(stage)
     })
   }
 
   renderChampion() {
     const $championEl = this.$champion.el
-    const winner = this.stack[this.stack.length - 1].winnerList[0]
+    const winner = this.data[this.data.length - 1].winnerList[0]
 
     ui.idealItem(winner.id, winner.title, winner.image).render($championEl)
   }

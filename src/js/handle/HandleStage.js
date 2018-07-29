@@ -8,7 +8,6 @@ export class HandleStage extends Stage {
     super(stageName, winners, eventManager)
 
     this.$container = $('#matchContainer')
-
     this.setStageName = this.setStageName.bind(this)
   
     this.setStageName()
@@ -20,12 +19,16 @@ export class HandleStage extends Stage {
     $stageName.el.innerHTML = this.stageName
   }
 
-  renderItems() {
+  HandleBtn() {
     if(this.step > 0) {
       $('#prevButton').removeClass('disabled')
     } else {
       $('#prevButton').addClass('disabled')
     }
+  }
+
+  renderItems() {
+    this.HandleBtn()
 
     this.$container.el.innerHTML = ''
     if(this.matches[this.step]) {
@@ -41,7 +44,6 @@ export class HandleStage extends Stage {
     const self = this
     this.$$target.forEach(el => {
       el.addEventListener('click', function() {
-        console.log(self.step)
         self.step = StageManager.nextStep(self.step)
         const element = $(el).el
         const id = Number(element.dataset.id)

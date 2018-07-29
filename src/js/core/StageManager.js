@@ -24,7 +24,7 @@ const StageManager = {
   },
   /**
    * 현재 스테이지의 결과값을 반환
-   * @return {Araay}
+   * @return {Array}
    */
   getWinnerList() {
     return this.winnerList

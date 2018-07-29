@@ -3,14 +3,8 @@ class EventManager {
     this.events = {}
   }
 
-  /**
-   * bind event
-   * @param type{string} - event type
-   * @param listener{function} - event listener
-   * @param target{object} - target to bind
-   */
   on(event, listener) {
-    console.log('on',event)
+    console.log('on', event)
     if (typeof this.events[event] !== 'object') {
       this.events[event] = []
     }
@@ -32,12 +26,6 @@ class EventManager {
     }
   }
 
-  /**
-   * unbind event
-   * @param type{string} - event type
-   * @param listener{function} - event listener
-   * @param target{object} - target to unbind
-   */
   off(event, listener) {
     var idx
     if (typeof this.events[event] === 'object') {
@@ -48,7 +36,6 @@ class EventManager {
       }
     }
   }
-
 }
 
 export default EventManager
