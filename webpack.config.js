@@ -1,22 +1,23 @@
-const path = require('path');
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const path = require('path')
+const HtmlWebPackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: {
-    'main': './src/js/app.js',
+    main: './src/js/app.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].js'
   },
   devServer: {
-    contentBase: "./dist"
+    contentBase: './dist'
   },
   module: {
     rules: [
       {
         enforce: 'pre',
-        test  : /\.js$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         use: 'eslint-loader'
       },
@@ -32,19 +33,23 @@ module.exports = {
       {
         test: /\.(png|jp(e*)g|svg)$/,
         loader: 'url-loader'
-
       },
       {
         test: /\.html$/,
-        loader: "html-loader"
+        loader: 'html-loader'
       }
     ]
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html",
+      template: './src/index.html',
+      filename: './index.html',
       chunks: ['main']
-    })
+    }),
+    new CopyWebpackPlugin([{ 
+      from: './src/assets/images', 
+      to: './images',
+      flatten: true
+    }])
   ]
-};
+}

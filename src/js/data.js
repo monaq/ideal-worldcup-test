@@ -1,4 +1,4 @@
-import chickens from '../dist/chickens'
+import chickens from '../static/chickens'
 
 const data = chickens
 
